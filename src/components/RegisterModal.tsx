@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import styles from "./RegisterModal.module.css";
 
 interface RegisterModalProps {
@@ -24,6 +24,28 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
     phone: "",
     address: "",
   });
+
+  const [plans, setPlans] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const fetchPlans = async () => {
+      try {
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL || 
+          (typeof window !== "undefined" && !window.location.hostname.includes("localhost")
+            ? "https://www.styleappblue.lojinhadoquebrabackend.com.br"
+            : "http://localhost:8091");
+        const res = await fetch(`${baseUrl}/subscriptions/plans`);
+        if (res.ok) {
+          const data = await res.json();
+          setPlans(data);
+        }
+      } catch (e) {
+        console.error("Failed to load Stripe plans", e);
+      }
+    };
+    fetchPlans();
+  }, [isOpen]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -62,7 +84,10 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
         console.error("Geocoding failed, proceeding with empty coordinates", geoErr);
       }
 
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8091";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 
+        (typeof window !== "undefined" && !window.location.hostname.includes("localhost")
+          ? "https://www.styleappblue.lojinhadoquebrabackend.com.br"
+          : "http://localhost:8091");
       const response = await fetch(`${baseUrl}/auth/signup/barber`, {
         method: "POST",
         headers: {
@@ -86,13 +111,73 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
         throw new Error(errData.message || "E-mail já cadastrado ou dados inválidos.");
       }
 
-      // Call parent success flow
-      onSuccess({
-        ...formData,
-        plan: selectedPlan?.name || "Free Trial",
-        cycle: selectedPlan?.cycle || "Mensal",
-        price: selectedPlan?.price || "0,00",
-      });
+      // 1. Encontrar o priceId correspondente do plano do banco
+      let priceId = null;
+      if (plans.length > 0 && selectedPlan) {
+        const matched = plans.find(p => 
+          p.name.toLowerCase().includes(selectedPlan.name.toLowerCase())
+        );
+        if (matched) {
+          priceId = matched.stripePriceId;
+        } else {
+          // Busca o primeiro plano ativo como fallback
+          priceId = plans[0].stripePriceId;
+        }
+      }
+
+      // 2. Tentar autenticar o usuário criado via oauth2 para obter o token JWT
+      try {
+        const loginParams = new URLSearchParams();
+        loginParams.append("grant_type", "password");
+        loginParams.append("username", formData.email);
+        loginParams.append("password", formData.password);
+        loginParams.append("scope", "read write");
+
+        const tokenRes = await fetch(`${baseUrl}/oauth2/token`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: "Basic c3R5bGVhcHA6c3R5bGVhcHAxMjM=", // styleapp:styleapp123
+          },
+          body: loginParams.toString(),
+        });
+
+        if (tokenRes.ok && priceId) {
+          const tokenData = await tokenRes.json();
+          const token = tokenData.access_token;
+
+          // 3. Criar sessão de checkout do Stripe no backend
+          const successUrl = `${window.location.origin}/checkout-success`;
+          const cancelUrl = window.location.origin;
+
+          const sessionRes = await fetch(
+            `${baseUrl}/stripe/checkout-session?priceId=${encodeURIComponent(priceId)}&successUrl=${encodeURIComponent(successUrl)}&cancelUrl=${encodeURIComponent(cancelUrl)}`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          if (sessionRes.ok) {
+            const sessionData = await sessionRes.json();
+            if (sessionData.url) {
+              // Redireciona diretamente para o checkout seguro do Stripe!
+              window.location.href = sessionData.url;
+              return;
+            }
+          }
+        }
+      } catch (authErr) {
+        console.error("Autenticação ou Stripe Checkout falhou, redirecionando para login", authErr);
+      }
+
+      // Redirecionamento fallback caso Stripe não esteja disponível ou seja trial grátis
+      const appUrl = typeof window !== "undefined" && !window.location.hostname.includes("localhost")
+        ? "https://painel.beautyfi.com.br"
+        : "http://localhost:5173";
+      window.location.href = `${appUrl}/login?email=${encodeURIComponent(formData.email)}`;
     } catch (err: any) {
       setError(err.message || "Ocorreu um erro no cadastro. Tente novamente.");
     } finally {

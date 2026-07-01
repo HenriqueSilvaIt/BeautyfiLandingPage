@@ -50,20 +50,16 @@ export default function Home() {
 
   const faqs: FaqItem[] = [
     {
-      question: "Como funciona a Inteligência Artificial no WhatsApp?",
-      answer: "Nossa IA se conecta diretamente ao número de WhatsApp do seu estabelecimento. Quando um cliente envia uma mensagem querendo agendar, a IA consulta a sua agenda de forma inteligente, sugere os horários livres, tira dúvidas sobre os procedimentos e realiza a marcação instantaneamente.",
+      question: "Posso cancelar quando quiser?",
+      answer: "Sim! Não cobramos taxas extras de cancelamento. Você pode cancelar ou alterar seu plano a qualquer momento diretamente pelas configurações do seu painel.",
     },
     {
-      question: "Posso alterar ou cancelar meu plano quando quiser?",
-      answer: "Sim! Não cobramos taxas extras de cancelamento. Se você estiver no plano mensal, pode cancelar ou alterar a qualquer momento direto pelas configurações do painel. Para os planos semestral e anual, você garante o desconto contratado durante a vigência do ciclo.",
+      question: "Preciso de cartão para testar?",
+      answer: "Não! Você pode iniciar o seu período de teste grátis de 14 dias sem precisar informar nenhum dado de cartão de crédito.",
     },
     {
-      question: "O que acontece se eu ultrapassar os 100 lembretes do plano Starter?",
-      answer: "Caso você utilize todos os 100 lembretes no plano Starter, você pode fazer o upgrade para o plano Pro (que oferece notificações ilimitadas) ou comprar pacotes avulsos de lembretes diretamente pela nossa plataforma.",
-    },
-    {
-      question: "Como funciona a divisão e o cálculo de comissão automática?",
-      answer: "Você pode definir as comissões por profissional, seja uma porcentagem sobre o serviço ou um valor fixo. Quando um atendimento é finalizado e o pagamento é registrado, o sistema calcula a fatia de forma transparente, permitindo gerar relatórios rápidos de pagamento.",
+      question: "Funciona no meu WhatsApp?",
+      answer: "Sim! Toda a nossa integração de lembretes e Inteligência Artificial é feita utilizando o seu número de WhatsApp atual do estabelecimento.",
     },
   ];
 

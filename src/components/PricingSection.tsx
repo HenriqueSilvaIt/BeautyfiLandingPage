@@ -16,28 +16,26 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
     if (plan === "starter") {
       switch (cycle) {
         case "monthly": return "59,90";
-        case "semiannual": return "52,90";
-        case "annual": return "44,90";
+        case "semiannual": return "54,90";
+        case "annual": return "49,90";
       }
     } else if (plan === "pro") {
       switch (cycle) {
         case "monthly": return "99,90";
-        case "semiannual": return "87,90";
-        case "annual": return "74,90";
+        case "semiannual": return "89,90";
+        case "annual": return "83,25";
       }
     } else {
       switch (cycle) {
         case "monthly": return "179,90";
-        case "semiannual": return "Negociação";
-        case "annual": return "134,90";
+        case "semiannual": return "164,90";
+        case "annual": return "149,90";
       }
     }
   };
 
   const getBillingLabel = (plan: "starter" | "pro" | "enterprise") => {
     const price = getPrice(plan);
-    if (price === "Negociação") return "Fale com o time";
-    
     switch (cycle) {
       case "monthly": return "Cobrado mensalmente";
       case "semiannual": {
@@ -59,7 +57,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
 
   return (
     <section id="pricing" className={`${styles.pricingSection} section-padding`}>
-      <div className="container">
+      <div className="container mx-auto px-4">
         <div className={styles.header}>
           <h2 className={styles.title}>Planos simples, transparentes e sob medida</h2>
           
@@ -75,14 +73,14 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               className={`${styles.toggleBtn} ${cycle === "semiannual" ? styles.toggleBtnActive : ""}`}
             >
               Semestral
-              <span className={styles.discountBadge}>-12%</span>
+              <span className={styles.discountBadge}>Desconto</span>
             </button>
             <button 
               onClick={() => setCycle("annual")}
               className={`${styles.toggleBtn} ${cycle === "annual" ? styles.toggleBtnActive : ""}`}
             >
               Anual
-              <span className={styles.discountBadge}>-25%</span>
+              <span className={styles.discountBadge}>Melhor Preço</span>
             </button>
           </div>
         </div>
@@ -94,7 +92,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               <h3 className={styles.cardName}>
                 <span>🌱</span> Starter
               </h3>
-              <p className={styles.cardDesc}>1 profissional · Ideal para autônomos e iniciantes</p>
+              <p className={styles.cardDesc}>Para autônomo e MEI</p>
             </div>
             
             <div className={styles.priceWrapper}>
@@ -109,7 +107,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
             <ul className={styles.featuresList}>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}><span className={styles.featureBold}>1 profissional</span> ativo</span>
+                <span className={styles.featureText}>1 profissional ativo</span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
@@ -121,7 +119,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}>Lembretes WhatsApp <span className={styles.featureBold}>(até 100/mês)</span></span>
+                <span className={styles.featureText}>Lembretes WhatsApp (até 100/mês)</span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
@@ -129,7 +127,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCross}>✗</span>
-                <span className={styles.featureText}>IA no WhatsApp (atendimento automático)</span>
+                <span className={styles.featureText}>IA no WhatsApp</span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCross}>✗</span>
@@ -152,7 +150,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               <h3 className={styles.cardName}>
                 <span>🚀</span> Pro
               </h3>
-              <p className={styles.cardDesc}>Até 5 profissionais · Perfeito para salões e barbearias médias</p>
+              <p className={styles.cardDesc}>Até 5 profissionais</p>
             </div>
             
             <div className={styles.priceWrapper}>
@@ -167,15 +165,15 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
             <ul className={styles.featuresList}>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}>Tudo do plano <span className={styles.featureBold}>Starter</span></span>
+                <span className={styles.featureText}><span className="font-bold">Tudo do Starter</span></span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}><span className={styles.featureBold}>Até 5 profissionais</span> ativos</span>
+                <span className={styles.featureText}>Até 5 profissionais ativos</span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}><span className={styles.featureBold}>WhatsApp IA</span> (atendimento e agendamento automático)</span>
+                <span className={styles.featureText}><span className="font-bold text-accent">IA no WhatsApp (atende e agenda)</span> — com cota mensal incluída</span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
@@ -187,7 +185,11 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}>Notificações e lembretes <span className={styles.featureBold}>ilimitados</span></span>
+                <span className={styles.featureText}>Lembretes e notificações ilimitados</span>
+              </li>
+              <li className={styles.featureItem}>
+                <span className={styles.featureIconCheck}>✓</span>
+                <span className={styles.featureText}>Programa de pontos de fidelidade</span>
               </li>
             </ul>
 
@@ -205,36 +207,30 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               <h3 className={styles.cardName}>
                 <span>👑</span> Enterprise
               </h3>
-              <p className={styles.cardDesc}>Mais de 5 profissionais · Redes de franquias e grandes operações</p>
+              <p className={styles.cardDesc}>Redes e franquias</p>
             </div>
             
             <div className={styles.priceWrapper}>
-              {getPrice("enterprise") === "Negociação" ? (
-                <div className={styles.priceRow}>
-                  <span className={styles.priceValue}>Negociação</span>
-                </div>
-              ) : (
-                <div className={styles.priceRow}>
-                  <span className={styles.priceSymbol}>R$</span>
-                  <span className={styles.priceValue}>{getPrice("enterprise")}</span>
-                  <span className={styles.pricePeriod}>/mês</span>
-                </div>
-              )}
+              <div className={styles.priceRow}>
+                <span className={styles.priceSymbol}>a partir de R$</span>
+                <span className={styles.priceValue}>{getPrice("enterprise")}</span>
+                <span className={styles.pricePeriod}>/mês</span>
+              </div>
               <span className={styles.billingNote}>{getBillingLabel("enterprise")}</span>
             </div>
 
             <ul className={styles.featuresList}>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}>Tudo do plano <span className={styles.featureBold}>Pro</span></span>
+                <span className={styles.featureText}><span className="font-bold">Tudo do Pro</span></span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}><span className={styles.featureBold}>Profissionais ilimitados</span></span>
+                <span className={styles.featureText}>Profissionais ilimitados</span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
-                <span className={styles.featureText}>Gestão <span className={styles.featureBold}>Multi-unidades</span></span>
+                <span className={styles.featureText}>Gestão multi-unidades</span>
               </li>
               <li className={styles.featureItem}>
                 <span className={styles.featureIconCheck}>✓</span>
@@ -254,8 +250,21 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               onClick={() => handleAction("Enterprise", "enterprise")} 
               className={`${styles.btnAction} ${styles.btnActionSecondary}`}
             >
-              {getPrice("enterprise") === "Negociação" ? "Falar com Consultor" : "Assinar Enterprise"}
+              Falar com vendas
             </button>
+          </div>
+        </div>
+
+        {/* Phrase of value and Badges */}
+        <div className="mt-16 text-center border-t border-dashed border-gray-200 dark:border-gray-800 pt-12">
+          <p className="text-xl font-medium text-gray-800 dark:text-gray-200 mb-6 italic">
+            "Menos que 1 cliente por mês. Se evitar 1 falta, já se pagou."
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-xs font-semibold text-gray-600 dark:text-gray-400">
+            <span className="bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full flex items-center gap-1.5">🛡️ 14 dias grátis</span>
+            <span className="bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full flex items-center gap-1.5">⚡ Sem fidelidade</span>
+            <span className="bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full flex items-center gap-1.5">🔄 Cancele quando quiser</span>
+            <span className="bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full flex items-center gap-1.5">🔒 Dados protegidos (LGPD)</span>
           </div>
         </div>
       </div>

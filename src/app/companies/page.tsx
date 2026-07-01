@@ -31,7 +31,10 @@ export default function CompaniesPage() {
     setLoading(true);
     setError(null);
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8091";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 
+        (typeof window !== "undefined" && !window.location.hostname.includes("localhost")
+          ? "https://www.styleappblue.lojinhadoquebrabackend.com.br"
+          : "http://localhost:8091");
       const endpoint = nameQuery
         ? `${baseUrl}/companies?name=${encodeURIComponent(nameQuery)}`
         : `${baseUrl}/companies`;
@@ -59,7 +62,10 @@ export default function CompaniesPage() {
     setLoading(true);
     setError(null);
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8091";
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 
+        (typeof window !== "undefined" && !window.location.hostname.includes("localhost")
+          ? "https://www.styleappblue.lojinhadoquebrabackend.com.br"
+          : "http://localhost:8091");
       const resp = await fetch(`${baseUrl}/companies/nearby?latitude=${lat}&longitude=${lng}&radius=${searchRadius}`);
       if (!resp.ok) throw new Error("Erro ao buscar estabelecimentos próximos");
       const data = await resp.json();
