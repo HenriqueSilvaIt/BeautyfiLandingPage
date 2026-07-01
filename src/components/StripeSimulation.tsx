@@ -174,7 +174,11 @@ export default function StripeSimulation({ isOpen, onClose, purchaseData }: Stri
           <button 
             onClick={() => {
               onClose();
-              window.location.href = `http://localhost:5173/login?email=${encodeURIComponent(purchaseData.email)}`;
+              const appUrl = process.env.NEXT_PUBLIC_APP_URL || 
+                (typeof window !== "undefined" && !window.location.hostname.includes("localhost") 
+                  ? "https://painel.beautyfi.com.br" 
+                  : "http://localhost:5173");
+              window.location.href = `${appUrl}/login?email=${encodeURIComponent(purchaseData.email)}`;
             }} 
             className={styles.btnDone}
           >

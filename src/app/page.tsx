@@ -73,6 +73,11 @@ export default function Home() {
   };
 
   const handleSelectPlan = (planName: string, billingCycle: string, price: string) => {
+    if (planName === "Enterprise" || price === "Negociação" || price.toLowerCase().includes("negoci")) {
+      const message = encodeURIComponent("Olá! Gostaria de falar com um consultor sobre o plano Enterprise do Beautyfi.");
+      window.open(`https://api.whatsapp.com/send?phone=5511967438366&text=${message}`, "_blank");
+      return;
+    }
     setSelectedPlan({ name: planName, cycle: billingCycle, price });
     setIsRegisterOpen(true);
   };

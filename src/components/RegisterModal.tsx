@@ -108,7 +108,7 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
         </button>
         
         <h2 className={styles.title}>Crie sua conta</h2>
-        <p className={styles.subtitle}>Comece seu teste grátis de 30 dias sem compromisso.</p>
+        <p className={styles.subtitle}>Comece seu teste grátis de 14 dias sem compromisso.</p>
 
         {selectedPlan && (
           <div className={styles.planBadge}>

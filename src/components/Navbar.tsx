@@ -16,9 +16,9 @@ export default function Navbar({ onOpenRegister }: NavbarProps) {
     if (savedTheme) {
       setTheme(savedTheme);
       document.documentElement.setAttribute("data-theme", savedTheme);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      setTheme("light");
+      document.documentElement.setAttribute("data-theme", "light");
     }
   }, []);
 
@@ -67,7 +67,16 @@ export default function Navbar({ onOpenRegister }: NavbarProps) {
             )}
           </button>
 
-          <a href={process.env.NEXT_PUBLIC_APP_URL || "http://localhost:5173/login"} className={styles.btnText} style={{ textDecoration: "none" }}>
+          <a 
+            href={
+              process.env.NEXT_PUBLIC_APP_URL || 
+              (typeof window !== "undefined" && !window.location.hostname.includes("localhost") 
+                ? "https://painel.beautyfi.com.br/login" 
+                : "http://localhost:5173/login")
+            } 
+            className={styles.btnText} 
+            style={{ textDecoration: "none" }}
+          >
             Entrar
           </a>
           
