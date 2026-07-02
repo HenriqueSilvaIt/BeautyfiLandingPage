@@ -108,7 +108,11 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
 
       if (!response.ok) {
         const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.message || "E-mail já cadastrado ou dados inválidos.");
+        let errMsg = errData.message;
+        if (errData.errors && errData.errors.length > 0) {
+          errMsg = errData.errors.map((e: any) => `${e.fieldName}: ${e.message}`).join(", ");
+        }
+        throw new Error(errMsg || "E-mail já cadastrado ou dados inválidos.");
       }
 
       // 1. Encontrar o priceId correspondente do plano do banco
