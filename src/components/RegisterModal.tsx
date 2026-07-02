@@ -125,7 +125,21 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
         }
       }
 
+      // Fallback para IDs de teste caso o banco local esteja vazio
+      if (!priceId && selectedPlan) {
+        const planNameLower = selectedPlan.name.toLowerCase();
+        if (planNameLower.includes("starter")) {
+          priceId = "price_1PzStarterTestFallback";
+        } else if (planNameLower.includes("pro")) {
+          priceId = "price_1PzProTestFallback";
+        } else {
+          priceId = "price_1PzEnterpriseTestFallback";
+        }
+        console.warn(`Price ID não encontrado no banco. Utilizando fallback temporário: ${priceId}`);
+      }
+
       // 2. Tentar autenticar o usuário criado via oauth2 para obter o token JWT
+      let stripeRedirected = false;
       try {
         const loginParams = new URLSearchParams();
         loginParams.append("grant_type", "password");
@@ -163,14 +177,21 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
           if (sessionRes.ok) {
             const sessionData = await sessionRes.json();
             if (sessionData.url) {
-              // Redireciona diretamente para o checkout seguro do Stripe!
+              stripeRedirected = true;
               window.location.href = sessionData.url;
               return;
             }
+          } else {
+            const errText = await sessionRes.text().catch(() => "");
+            console.error("Erro ao criar sessão de checkout no Stripe:", sessionRes.status, errText);
           }
         }
       } catch (authErr) {
-        console.error("Autenticação ou Stripe Checkout falhou, redirecionando para login", authErr);
+        console.error("Autenticação ou Stripe Checkout falhou", authErr);
+      }
+
+      if (!stripeRedirected) {
+        alert("Conta criada com sucesso! O redirecionamento para o pagamento do Stripe falhou (plano/priceId não configurado ou Stripe offline). Redirecionando você para o login...");
       }
 
       // Redirecionamento fallback caso Stripe não esteja disponível ou seja trial grátis

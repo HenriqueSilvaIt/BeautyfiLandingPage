@@ -81,7 +81,7 @@ export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
             <div className={styles.reviewText}>
-              "Faturamento aumentou 35% no primeiro mês!"
+              Faturamento aumentou 35% no primeiro mês!
             </div>
           </div>
         </div>

@@ -12,12 +12,18 @@ interface PricingSectionProps {
 export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
 
-  const getPrice = (plan: "starter" | "pro" | "enterprise") => {
+  const getPrice = (plan: "starter" | "solo-ia" | "pro" | "enterprise") => {
     if (plan === "starter") {
       switch (cycle) {
         case "monthly": return "59,90";
-        case "semiannual": return "54,90";
+        case "semiannual": return "53,90";
         case "annual": return "49,90";
+      }
+    } else if (plan === "solo-ia") {
+      switch (cycle) {
+        case "monthly": return "74,90";
+        case "semiannual": return "67,40";
+        case "annual": return "62,40";
       }
     } else if (plan === "pro") {
       switch (cycle) {
@@ -28,13 +34,13 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
     } else {
       switch (cycle) {
         case "monthly": return "179,90";
-        case "semiannual": return "164,90";
+        case "semiannual": return "161,90";
         case "annual": return "149,90";
       }
     }
   };
 
-  const getBillingLabel = (plan: "starter" | "pro" | "enterprise") => {
+  const getBillingLabel = (plan: "starter" | "solo-ia" | "pro" | "enterprise") => {
     const price = getPrice(plan);
     switch (cycle) {
       case "monthly": return "Cobrado mensalmente";
@@ -49,7 +55,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
     }
   };
 
-  const handleAction = (planName: string, planKey: "starter" | "pro" | "enterprise") => {
+  const handleAction = (planName: string, planKey: "starter" | "solo-ia" | "pro" | "enterprise") => {
     const price = getPrice(planKey);
     const cycleLabel = cycle === "monthly" ? "Mensal" : cycle === "semiannual" ? "Semestral" : "Anual";
     onSelectPlan(planName, cycleLabel, price);
@@ -140,6 +146,55 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               className={`${styles.btnAction} ${styles.btnActionSecondary}`}
             >
               Assinar Starter
+            </button>
+          </div>
+
+          {/* SOLO + IA */}
+          <div className={styles.card}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardName}>
+                <span>🤖</span> Solo + IA
+              </h3>
+              <p className={styles.cardDesc}>Solo com inteligência artificial</p>
+            </div>
+            
+            <div className={styles.priceWrapper}>
+              <div className={styles.priceRow}>
+                <span className={styles.priceSymbol}>R$</span>
+                <span className={styles.priceValue}>{getPrice("solo-ia")}</span>
+                <span className={styles.pricePeriod}>/mês</span>
+              </div>
+              <span className={styles.billingNote}>{getBillingLabel("solo-ia")}</span>
+            </div>
+
+            <ul className={styles.featuresList}>
+              <li className={styles.featureItem}>
+                <span className={styles.featureIconCheck}>✓</span>
+                <span className={styles.featureText}>1 profissional ativo</span>
+              </li>
+              <li className={styles.featureItem}>
+                <span className={styles.featureIconCheck}>✓</span>
+                <span className={styles.featureText}><span className="font-bold">Tudo do Starter</span></span>
+              </li>
+              <li className={styles.featureItem}>
+                <span className={styles.featureIconCheck}>✓</span>
+                <span className={styles.featureText}><span className="font-bold text-accent">IA no WhatsApp (atende e agenda)</span> — com cota mensal incluída</span>
+              </li>
+              <li className={styles.featureItem}>
+                <span className={styles.featureIconCheck}>✓</span>
+                <span className={styles.featureText}>Lembretes e notificações ilimitados</span>
+              </li>
+              <li className={styles.featureItem}>
+                <span className={styles.featureIconCross}>✗</span>
+                <span className={styles.featureText}>Cálculo automático de comissão</span>
+              </li>
+            </ul>
+
+            <button 
+              onClick={() => handleAction("Solo + IA", "solo-ia")} 
+              className={`${styles.btnAction} ${styles.btnActionSecondary}`}
+            >
+              Assinar Solo + IA
             </button>
           </div>
 
