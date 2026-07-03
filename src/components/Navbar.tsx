@@ -9,6 +9,7 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenRegister }: NavbarProps) {
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [loginUrl, setLoginUrl] = useState("https://painel.beautyfi.com.br/login");
 
   useEffect(() => {
     // Load theme preference on mount
@@ -20,6 +21,9 @@ export default function Navbar({ onOpenRegister }: NavbarProps) {
       setTheme("light");
       document.documentElement.setAttribute("data-theme", "light");
     }
+
+    const isLocal = typeof window !== "undefined" && window.location.hostname.includes("localhost");
+    setLoginUrl(isLocal ? "http://localhost:5173/login" : "https://painel.beautyfi.com.br/login");
   }, []);
 
   const toggleTheme = () => {
@@ -68,12 +72,7 @@ export default function Navbar({ onOpenRegister }: NavbarProps) {
           </button>
 
           <a 
-            href={
-              process.env.NEXT_PUBLIC_APP_URL || 
-              (typeof window !== "undefined" && !window.location.hostname.includes("localhost") 
-                ? "https://painel.beautyfi.com.br/login" 
-                : "http://localhost:5173/login")
-            } 
+            href={loginUrl} 
             className={styles.btnText} 
             style={{ textDecoration: "none" }}
           >
