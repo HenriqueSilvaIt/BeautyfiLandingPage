@@ -109,12 +109,18 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
       });
 
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        let errMsg = errData.message;
-        if (errData.errors && errData.errors.length > 0) {
-          errMsg = errData.errors.map((e: any) => `${e.fieldName}: ${e.message}`).join(", ");
+        let errMsg = "";
+        try {
+          const errData = await response.json();
+          errMsg = errData.message;
+          if (errData.errors && errData.errors.length > 0) {
+            errMsg = errData.errors.map((e: any) => `${e.fieldName}: ${e.message}`).join(", ");
+          }
+        } catch {
+          const textErr = await response.text().catch(() => "");
+          errMsg = `Erro ${response.status}: ${textErr.slice(0, 100) || "Resposta inválida do servidor"}`;
         }
-        throw new Error(errMsg || "E-mail já cadastrado ou dados inválidos.");
+        throw new Error(errMsg || `Falha no cadastro (Status ${response.status}).`);
       }
 
       // 1. Encontrar o priceId correspondente do plano do banco

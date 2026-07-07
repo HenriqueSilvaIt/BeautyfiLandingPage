@@ -6,75 +6,182 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
   return (
-    <section className="hero">
+    <section className="hero" style={{ padding: "140px 0 80px 0" }}>
       <div className="container hero-grid">
         {/* Lado Esquerdo: Conteúdo */}
-        <div className="hero-content fade-in">
-          <h1 className="hero-title">
-            A agenda com IA que atende e agenda pelo WhatsApp — sozinha, 24h.
+        <div className="hero-content fade-in" style={{ textAlign: "left" }}>
+          <span 
+            className="hero-badge" 
+            style={{ 
+              display: "inline-flex", 
+              alignItems: "center", 
+              gap: "6px", 
+              backgroundColor: "rgba(198, 161, 91, 0.12)", 
+              color: "#C6A15B", 
+              padding: "6px 14px", 
+              borderRadius: "100px", 
+              fontSize: "11px", 
+              fontWeight: "800", 
+              textTransform: "uppercase", 
+              letterSpacing: "0.05em",
+              marginBottom: "20px" 
+            }}
+          >
+            ✨ Aplicativo Integrado Premium
+          </span>
+          <h1 
+            className="hero-title" 
+            style={{ 
+              fontSize: "46px", 
+              lineHeight: "1.15", 
+              fontWeight: "900", 
+              color: "#16294E", 
+              marginBottom: "20px",
+              fontFamily: "var(--font-serif, Playfair Display, serif)"
+            }}
+          >
+            Seu app de agendamento completo com IA no WhatsApp
           </h1>
           
-          <p className="hero-subtitle">
-            Reduza faltas em até 80%, ganhe tempo e encha sua agenda. Feito sob medida para profissionais da beleza.
+          <p 
+            className="hero-subtitle" 
+            style={{ 
+              fontSize: "16px", 
+              color: "#475569", 
+              lineHeight: "1.6", 
+              marginBottom: "36px",
+              maxWidth: "540px"
+            }}
+          >
+            A agenda inteligente que atende e agenda pelo WhatsApp sozinha 24h, totalmente integrada a um único aplicativo elegante para você e seus clientes controlarem horários, fichas de anamnese, carteiras de fidelidade e financeiro.
           </p>
           
-          <div className="hero-actions">
-            <button onClick={onOpenRegister} className="btn-gold" style={{ padding: "16px 36px" }}>
+          <div className="hero-actions" style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
+            <button 
+              onClick={onOpenRegister} 
+              className="btn-gold" 
+              style={{ 
+                padding: "16px 36px", 
+                fontSize: "14px", 
+                fontWeight: "700", 
+                borderRadius: "30px",
+                cursor: "pointer"
+              }}
+            >
               Começar grátis
             </button>
-            <a href="#pricing" className="btn-secondary" style={{ padding: "16px 36px" }}>
-              Ver planos
+            <a 
+              href="#apps" 
+              className="btn-secondary" 
+              style={{ 
+                padding: "16px 36px", 
+                fontSize: "14px", 
+                fontWeight: "700", 
+                borderRadius: "30px", 
+                border: "2px solid #C6A15B", 
+                color: "#16294E",
+                backgroundColor: "transparent",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.2s"
+              }}
+            >
+              Ver o Aplicativo
             </a>
           </div>
 
-          <div className="hero-badges">
-            <span>✓ 14 dias grátis</span>
-            <span>✓ sem cartão</span>
-            <span>✓ sem fidelidade</span>
+          <div className="hero-badges" style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#64748B", fontWeight: "600" }}>
+            <span>✓ Teste grátis de 14 dias</span>
+            <span>✓ Sem fidelidade</span>
+            <span>✓ Configuração em 2 minutos</span>
           </div>
         </div>
 
-        {/* Lado Direito: Celular com chat do WhatsApp */}
-        <div className="hero-mockup-wrapper">
-          <div className="hero-bg-shape"></div>
+        {/* Lado Direito: App Mockup em Destaque + WhatsApp IA Floating Bubble */}
+        <div className="hero-mockup-wrapper" style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          {/* Fundo Dourado/Champagne Soft */}
+          <div 
+            className="hero-bg-shape" 
+            style={{ 
+              position: "absolute", 
+              width: "90%", 
+              height: "90%", 
+              borderRadius: "50%", 
+              background: "radial-gradient(circle, rgba(198, 161, 91, 0.15) 0%, transparent 70%)", 
+              zIndex: 1 
+            }}
+          />
           
-          <div className="hero-phone-mockup">
-            <div className="phone-screen">
-              {/* WhatsApp Header showing official beautyfi contact */}
-              <div className="phone-header" style={{ display: "flex", alignItems: "center", gap: "10px", paddingBottom: "10px", borderBottom: "1px solid rgba(22, 41, 78, 0.08)" }}>
-                <img 
-                  src="/logo.png" 
-                  alt="beautyfi Logo" 
-                  style={{ width: "34px", height: "34px", borderRadius: "50%", objectFit: "contain", backgroundColor: "#fff", border: "1px solid rgba(198, 161, 91, 0.2)", padding: "2px" }} 
-                />
-                <div className="phone-user-status" style={{ display: "flex", flexDirection: "column" }}>
-                  <span className="phone-username" style={{ fontSize: "13px", fontWeight: "700", color: "var(--primary)" }}>beautyfi Virtual</span>
-                  <span className="phone-status" style={{ fontSize: "10px", color: "#10b981", fontWeight: "600" }}>Online • WhatsApp Comercial</span>
-                </div>
-              </div>
-
-              {/* Chat Bubble 1 */}
-              <div className="chat-bubble chat-left">
-                Oi! Tem horário pra fazer cabelo e unha hoje?
-              </div>
-
-              {/* Chat Bubble 2 (IA) */}
-              <div className="chat-bubble chat-right">
-                Olá! Temos sim. Para Cabelo + Unha hoje temos disponível às 14:00 com a Camila ou às 16:30 com a Jéssica. Qual você prefere?
-                <span className="chat-ia-badge">IA</span>
-              </div>
-
-              {/* Chat Bubble 3 */}
-              <div className="chat-bubble chat-left">
-                Quero às 14h com a Camila.
-              </div>
-
-              {/* Chat Bubble 4 (IA) */}
-              <div className="chat-bubble chat-right" style={{ marginBottom: "20px" }}>
-                Perfeito! Agendado: Cabelo + Unha hoje às 14:00 com a Camila. Te enviei o link para o pagamento do sinal de 30% via Pix para confirmar seu horário.
-                <span className="chat-ia-badge">IA</span>
-              </div>
+          <div style={{ display: "flex", gap: "20px", zIndex: 2, alignItems: "center" }}>
+            {/* iPhone 1: Agenda do Profissional */}
+            <div 
+              style={{
+                width: "230px",
+                borderRadius: "38px",
+                border: "10px solid #1e293b",
+                boxShadow: "0 25px 60px -15px rgba(0,0,0,0.45)",
+                overflow: "hidden",
+                backgroundColor: "#fff",
+                transform: "rotate(-3deg) translateY(-15px)",
+                transition: "transform 0.3s ease"
+              }}
+            >
+              <img 
+                src="/iphone_agenda.png" 
+                alt="App de Agenda do Profissional" 
+                style={{ width: "100%", height: "auto", display: "block" }} 
+              />
             </div>
+
+            {/* iPhone 2: Perfil Cliente / Home */}
+            <div 
+              style={{
+                width: "210px",
+                borderRadius: "38px",
+                border: "10px solid #1e293b",
+                boxShadow: "0 25px 50px -15px rgba(0,0,0,0.38)",
+                overflow: "hidden",
+                backgroundColor: "#fff",
+                transform: "rotate(3deg) translateY(15px)",
+                transition: "transform 0.3s ease"
+              }}
+            >
+              <img 
+                src="/iphone_home.png" 
+                alt="App de Agendamento do Cliente" 
+                style={{ width: "100%", height: "auto", display: "block" }} 
+              />
+            </div>
+          </div>
+
+          {/* Floating WhatsApp IA bubble */}
+          <div 
+            style={{
+              position: "absolute",
+              bottom: "40px",
+              left: "-15px",
+              backgroundColor: "#ffffff",
+              border: "1px solid rgba(198, 161, 91, 0.25)",
+              borderRadius: "20px",
+              boxShadow: "0 12px 30px -8px rgba(0,0,0,0.18)",
+              padding: "14px 18px",
+              maxWidth: "250px",
+              zIndex: 3,
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+              textAlign: "left"
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+              <span style={{ color: "#25D366", fontSize: "16px", fontWeight: "bold" }}>●</span>
+              <span style={{ fontSize: "11px", fontWeight: "800", color: "#10b981", textTransform: "uppercase", letterSpacing: "0.05em" }}>WhatsApp IA Ativa</span>
+            </div>
+            <p style={{ fontSize: "11px", color: "#16294E", margin: 0, fontWeight: "600", lineHeight: "1.4" }}>
+              "Agendamento confirmado! Corte de Cabelo hoje às 14:00 com Camila."
+            </p>
           </div>
         </div>
       </div>
