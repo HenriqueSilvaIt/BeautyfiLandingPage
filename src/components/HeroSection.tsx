@@ -6,10 +6,10 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
   return (
-    <section className="hero" style={{ padding: "140px 0 80px 0" }}>
+    <section className="hero">
       <div className="container hero-grid">
         {/* Lado Esquerdo: Conteúdo */}
-        <div className="hero-content fade-in" style={{ textAlign: "left" }}>
+        <div className="hero-content fade-in">
           <span 
             className="hero-badge" 
             style={{ 
@@ -29,34 +29,15 @@ export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
           >
             ✨ Aplicativo Integrado Premium
           </span>
-          <h1 
-            className="hero-title" 
-            style={{ 
-              fontSize: "46px", 
-              lineHeight: "1.15", 
-              fontWeight: "900", 
-              color: "#16294E", 
-              marginBottom: "20px",
-              fontFamily: "var(--font-serif, Playfair Display, serif)"
-            }}
-          >
-            Seu app de agendamento completo com IA no WhatsApp
+          <h1 className="hero-title">
+            A plataforma definitiva de gestão e agendamento para o mercado de beleza
           </h1>
           
-          <p 
-            className="hero-subtitle" 
-            style={{ 
-              fontSize: "16px", 
-              color: "#475569", 
-              lineHeight: "1.6", 
-              marginBottom: "36px",
-              maxWidth: "540px"
-            }}
-          >
-            A agenda inteligente que atende e agenda pelo WhatsApp sozinha 24h, totalmente integrada a um único aplicativo elegante para você e seus clientes controlarem horários, fichas de anamnese, carteiras de fidelidade e financeiro.
+          <p className="hero-subtitle">
+            O sistema completo e premium que integra o controle do seu negócio (financeiro, comissões, equipe) a um aplicativo exclusivo para suas clientes agendarem sozinhas, com confirmações automáticas por WhatsApp, clube de fidelidade e fichas digitais de anamnese.
           </p>
           
-          <div className="hero-actions" style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
+          <div className="hero-actions">
             <button 
               onClick={onOpenRegister} 
               className="btn-gold" 
@@ -92,7 +73,7 @@ export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
             </a>
           </div>
 
-          <div className="hero-badges" style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#64748B", fontWeight: "600" }}>
+          <div className="hero-badges">
             <span>✓ Teste grátis de 14 dias</span>
             <span>✓ Sem fidelidade</span>
             <span>✓ Configuração em 2 minutos</span>
@@ -100,64 +81,29 @@ export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
         </div>
 
         {/* Lado Direito: App Mockup em Destaque + WhatsApp IA Floating Bubble */}
-        <div className="hero-mockup-wrapper" style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div className="hero-mockup-wrapper">
           {/* Fundo Dourado/Champagne Soft */}
-          <div 
-            className="hero-bg-shape" 
-            style={{ 
-              position: "absolute", 
-              width: "90%", 
-              height: "90%", 
-              borderRadius: "50%", 
-              background: "radial-gradient(circle, rgba(198, 161, 91, 0.15) 0%, transparent 70%)", 
-              zIndex: 1 
-            }}
-          />
+          <div className="hero-bg-shape" />
           
-          <div style={{ display: "flex", gap: "20px", zIndex: 2, alignItems: "center" }}>
-            {/* iPhone 1: Agenda do Profissional */}
-            <div 
-              style={{
-                width: "230px",
-                borderRadius: "38px",
-                border: "10px solid #1e293b",
-                boxShadow: "0 25px 60px -15px rgba(0,0,0,0.45)",
-                overflow: "hidden",
-                backgroundColor: "#fff",
-                transform: "rotate(-3deg) translateY(-15px)",
-                transition: "transform 0.3s ease"
-              }}
-            >
-              <img 
-                src="/iphone_agenda.png" 
-                alt="App de Agenda do Profissional" 
-                style={{ width: "100%", height: "auto", display: "block" }} 
-              />
-            </div>
-
-            {/* iPhone 2: Perfil Cliente / Home */}
-            <div 
-              style={{
-                width: "210px",
-                borderRadius: "38px",
-                border: "10px solid #1e293b",
-                boxShadow: "0 25px 50px -15px rgba(0,0,0,0.38)",
-                overflow: "hidden",
-                backgroundColor: "#fff",
-                transform: "rotate(3deg) translateY(15px)",
-                transition: "transform 0.3s ease"
-              }}
-            >
-              <img 
-                src="/iphone_home.png" 
-                alt="App de Agendamento do Cliente" 
-                style={{ width: "100%", height: "auto", display: "block" }} 
-              />
-            </div>
+          <div className="hero-artwork-container" style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "center", alignItems: "center", width: "100%", padding: "0 10px" }}>
+            <img 
+              src="/hero_artwork.png" 
+              alt="Plataforma de Gestão e Agendamento Beautyfi" 
+              style={{ 
+                width: "100%", 
+                maxWidth: "480px", 
+                height: "auto", 
+                borderRadius: "20px", 
+                boxShadow: "0 25px 50px -12px rgba(22, 41, 78, 0.35)",
+                border: "1px solid rgba(198, 161, 91, 0.15)",
+                display: "block"
+              }} 
+            />
           </div>
 
           {/* Floating WhatsApp IA bubble */}
           <div 
+            className="floating-wa-bubble"
             style={{
               position: "absolute",
               bottom: "40px",

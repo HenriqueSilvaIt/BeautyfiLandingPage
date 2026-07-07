@@ -232,13 +232,13 @@ p {
 
 /* 2. HERO */
 .hero {
-  padding-top: 160px;
+  padding-top: 140px;
   padding-bottom: 80px;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 60px;
   align-items: center;
 }
@@ -247,22 +247,24 @@ p {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 }
 
 .hero-title {
-  font-size: 54px;
-  font-weight: 500;
+  font-size: 52px;
+  font-weight: 900;
   color: var(--primary);
-  line-height: 1.1;
-  margin-bottom: 24px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  font-family: var(--font-heading);
 }
 
 .hero-subtitle {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 36px;
-  max-width: 520px;
+  max-width: 540px;
 }
 
 .hero-actions {
@@ -273,11 +275,12 @@ p {
 }
 
 .hero-badges {
-  font-size: 13px;
-  color: var(--accent);
-  font-weight: 500;
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 600;
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .hero-mockup-wrapper {
@@ -289,20 +292,6 @@ p {
 
 .hero-bg-shape {
   position: absolute;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(198, 161, 91, 0.12) 0%, rgba(22, 41, 78, 0.04) 70%);
-  border-radius: 50%;
-  z-index: -1;
-}
-
-.hero-phone-mockup {
-  width: 310px;
-  height: 600px;
-  background-color: #0b0f19;
-  border: 12px solid #1f2937;
-  border-radius: 36px;
-  box-shadow: 0 25px 60px -15px rgba(22, 41, 78, 0.25);
   overflow: hidden;
   position: relative;
   display: flex;
