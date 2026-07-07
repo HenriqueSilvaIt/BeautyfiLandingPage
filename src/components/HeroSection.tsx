@@ -1,87 +1,79 @@
 "use client";
 
-import styles from "./HeroSection.module.css";
-
 interface HeroSectionProps {
   onOpenRegister: () => void;
 }
 
 export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
   return (
-    <section className={styles.hero}>
-      <div className={`${styles.container} container`}>
-        <div className={styles.content}>
-          <div className={styles.badge}>
-            <span className={styles.badgeStar}>★</span>
-            <span>Plataforma #1 de Gestão de Beleza em 2026</span>
-          </div>
-          
-          <h1 className={styles.title}>
-            O software de agendamento que seu negócio de <span className={styles.highlight}>beleza</span> merece.
+    <section className="hero">
+      <div className="container hero-grid">
+        {/* Lado Esquerdo: Conteúdo */}
+        <div className="hero-content fade-in">
+          <h1 className="hero-title">
+            A agenda com IA que atende e agenda pelo WhatsApp — sozinha, 24h.
           </h1>
           
-          <p className={styles.subtitle}>
-            Simplifique sua agenda, atraia novos clientes, automatize comissões e gerencie sua barbearia, clínica ou salão de beleza com a plataforma mais ágil do mercado.
+          <p className="hero-subtitle">
+            Reduza faltas em até 80%, ganhe tempo e encha sua agenda. Feito sob medida para profissionais da beleza.
           </p>
           
-          <div className={styles.ctas}>
-            <button onClick={onOpenRegister} className={styles.btnPrimary}>
-              Começar Grátis
+          <div className="hero-actions">
+            <button onClick={onOpenRegister} className="btn-gold" style={{ padding: "16px 36px" }}>
+              Começar grátis
             </button>
-            <a href="#features" className={styles.btnSecondary}>
-              Ver Recursos
+            <a href="#pricing" className="btn-secondary" style={{ padding: "16px 36px" }}>
+              Ver planos
             </a>
+          </div>
+
+          <div className="hero-badges">
+            <span>✓ 14 dias grátis</span>
+            <span>✓ sem cartão</span>
+            <span>✓ sem fidelidade</span>
           </div>
         </div>
 
-        <div className={styles.visual}>
-          <div className={styles.dashboardPreview}>
-            <div className={styles.dbHeader}>
-              <span className={styles.dbTitle}>Minha Agenda — Hoje</span>
-              <span className={styles.dbStatus}>Online</span>
-            </div>
-
-            <div className={styles.calendarGrid}>
-              <div className={styles.calendarCard}>
-                <div className={styles.cardTime}>09:00 - 10:00</div>
-                <div className={styles.cardName}>Corte de Cabelo</div>
-                <span className={`${styles.cardStatus} ${styles.statusCompleted}`}>Finalizado</span>
+        {/* Lado Direito: Celular com chat do WhatsApp */}
+        <div className="hero-mockup-wrapper">
+          <div className="hero-bg-shape"></div>
+          
+          <div className="hero-phone-mockup">
+            <div className="phone-screen">
+              {/* WhatsApp Header showing official beautyfi contact */}
+              <div className="phone-header" style={{ display: "flex", alignItems: "center", gap: "10px", paddingBottom: "10px", borderBottom: "1px solid rgba(22, 41, 78, 0.08)" }}>
+                <img 
+                  src="/logo.png" 
+                  alt="beautyfi Logo" 
+                  style={{ width: "34px", height: "34px", borderRadius: "50%", objectFit: "contain", backgroundColor: "#fff", border: "1px solid rgba(198, 161, 91, 0.2)", padding: "2px" }} 
+                />
+                <div className="phone-user-status" style={{ display: "flex", flexDirection: "column" }}>
+                  <span className="phone-username" style={{ fontSize: "13px", fontWeight: "700", color: "var(--primary)" }}>beautyfi Virtual</span>
+                  <span className="phone-status" style={{ fontSize: "10px", color: "#10b981", fontWeight: "600" }}>Online • WhatsApp Comercial</span>
+                </div>
               </div>
-              
-              <div className={styles.calendarCard}>
-                <div className={styles.cardTime}>11:30 - 13:00</div>
-                <div className={styles.cardName}>Luzes & Escova</div>
-                <span className={`${styles.cardStatus} ${styles.statusConfirmed}`}>Confirmado</span>
-              </div>
-              
-              <div className={styles.calendarCard}>
-                <div className={styles.cardTime}>14:00 - 14:45</div>
-                <div className={styles.cardName}>Barba & Toalha</div>
-                <span className={`${styles.cardStatus} ${styles.statusPending}`}>Aguardando</span>
-              </div>
-            </div>
-          </div>
 
-          {/* Floating Widget 1: WhatsApp IA */}
-          <div className={styles.floatingWidget1}>
-            <div className={styles.floatingIcon}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-            </div>
-            <div>
-              <div className={styles.floatingVal}>+98%</div>
-              <div className={styles.floatingLbl}>Agendados via IA</div>
-            </div>
-          </div>
+              {/* Chat Bubble 1 */}
+              <div className="chat-bubble chat-left">
+                Oi! Tem horário pra fazer cabelo e unha hoje?
+              </div>
 
-          {/* Floating Widget 2: Testimonials & Stars */}
-          <div className={styles.floatingWidget2}>
-            <div className={styles.reviewStars}>
-              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-            </div>
-            <div className={styles.reviewText}>
-              Faturamento aumentou 35% no primeiro mês!
+              {/* Chat Bubble 2 (IA) */}
+              <div className="chat-bubble chat-right">
+                Olá! Temos sim. Para Cabelo + Unha hoje temos disponível às 14:00 com a Camila ou às 16:30 com a Jéssica. Qual você prefere?
+                <span className="chat-ia-badge">IA</span>
+              </div>
+
+              {/* Chat Bubble 3 */}
+              <div className="chat-bubble chat-left">
+                Quero às 14h com a Camila.
+              </div>
+
+              {/* Chat Bubble 4 (IA) */}
+              <div className="chat-bubble chat-right" style={{ marginBottom: "20px" }}>
+                Perfeito! Agendado: Cabelo + Unha hoje às 14:00 com a Camila. Te enviei o link para o pagamento do sinal de 30% via Pix para confirmar seu horário.
+                <span className="chat-ia-badge">IA</span>
+              </div>
             </div>
           </div>
         </div>

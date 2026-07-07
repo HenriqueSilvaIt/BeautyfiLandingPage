@@ -35,10 +35,12 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
           (typeof window !== "undefined" && !window.location.hostname.includes("localhost")
             ? "https://www.styleappblue.lojinhadoquebrabackend.com.br"
             : "http://localhost:8091");
-        const res = await fetch(`${baseUrl}/subscriptions/plans`);
-        if (res.ok) {
-          const data = await res.json();
+        const res = await fetch(`${baseUrl}/subscriptions/plans`).catch(() => null);
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
           setPlans(data);
+        } else {
+          console.warn("API de planos de assinatura indisponível, usando fallbacks de teste locais.");
         }
       } catch (e) {
         console.error("Failed to load Stripe plans", e);
@@ -134,6 +136,8 @@ export default function RegisterModal({ isOpen, onClose, selectedPlan, onSuccess
         const planNameLower = selectedPlan.name.toLowerCase();
         if (planNameLower.includes("starter")) {
           priceId = "price_1PzStarterTestFallback";
+        } else if (planNameLower.includes("solo")) {
+          priceId = "price_1PzSoloIaTestFallback";
         } else if (planNameLower.includes("pro")) {
           priceId = "price_1PzProTestFallback";
         } else {

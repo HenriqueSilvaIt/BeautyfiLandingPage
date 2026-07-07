@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./page.module.css";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -29,42 +28,46 @@ export default function Home() {
 
   const testimonials: Testimonial[] = [
     {
+      name: "Bruna Albuquerque",
+      role: "Lash & Nail Designer (Autônoma)",
+      avatarInitials: "BA",
+      text: "A IA no WhatsApp mudou minha vida! Ela atende minhas clientes e fecha os horários enquanto estou atendendo ou até dormindo. Reduzi faltas cobrando o sinal via Pix e minha agenda encheu.",
+    },
+    {
       name: "Camila Rocha",
-      role: "Dona do Studio Camila Rocha (12 profissionais)",
+      role: "Dona do Studio Beauty (5 profissionais)",
       avatarInitials: "CR",
-      text: "Migrar para o plano Pro do Beautyfi foi o melhor investimento que fizemos. A comissão automática reduziu nosso trabalho administrativo de horas para minutos no fim da semana. E a IA no WhatsApp é surreal!",
+      text: "O financeiro e as comissões automáticas do plano Pro economizaram horas do meu final de semana. É muito limpo e as profissionais acompanham a agenda delas pelo próprio celular.",
     },
     {
-      name: "Rodrigo Mendes",
-      role: "Proprietário da Barbearia Velho Oeste (3 profissionais)",
-      avatarInitials: "RM",
-      text: "Antes eu perdia metade do meu dia respondendo WhatsApp para agendar cortes. Agora a IA do Beautyfi faz tudo. Os clientes adoraram a agilidade e eu consigo focar 100% no atendimento. Recomendo muito!",
-    },
-    {
-      name: "Juliana Santos",
-      role: "Esteticista Autônoma",
-      avatarInitials: "JS",
-      text: "Como autônoma no plano Starter, o agendamento online facilitou demais. Meus clientes agendam até de madrugada pelo link do Instagram. Os lembretes por WhatsApp acabaram com os esquecimentos de horário.",
+      name: "Renata Vasconcellos",
+      role: "Esteticista e Lash Artist",
+      avatarInitials: "RV",
+      text: "Antes eu perdia clientes porque demorava pra responder no WhatsApp. Agora com o link de agendamento online e a IA, elas marcam sozinhas de madrugada. Não troco por nada!",
     },
   ];
 
   const faqs: FaqItem[] = [
     {
       question: "Posso cancelar quando quiser?",
-      answer: "Sim! Não cobramos taxas extras de cancelamento. Você pode cancelar ou alterar seu plano a qualquer momento diretamente pelas configurações do seu painel.",
+      answer: "Sim! O beautyfi não possui fidelidade no plano mensal. Você pode cancelar ou alterar o plano a qualquer momento diretamente pelo seu painel administrativo.",
     },
     {
       question: "Preciso de cartão para testar?",
-      answer: "Não! Você pode iniciar o seu período de teste grátis de 14 dias sem precisar informar nenhum dado de cartão de crédito.",
+      answer: "Não! Você pode criar sua conta e começar a testar gratuitamente por 7 dias sem precisar colocar dados de cartão de crédito.",
     },
     {
       question: "Funciona no meu WhatsApp?",
-      answer: "Sim! Toda a nossa integração de lembretes e Inteligência Artificial é feita utilizando o seu número de WhatsApp atual do estabelecimento.",
+      answer: "Sim! A nossa inteligência artificial se conecta com o seu número de WhatsApp atual. Não é necessário comprar outro número ou chip.",
+    },
+    {
+      question: "Serve para qual tipo de salão?",
+      answer: "O beautyfi foi criado sob medida para profissionais de beleza autônomas e estabelecimentos de todos os portes: manicures, lashes, designers de sobrancelhas, cabeleireiras, esteticistas, maquiadoras e salões de beleza.",
     },
   ];
 
   const handleOpenRegister = () => {
-    setSelectedPlan(null); // default signup
+    setSelectedPlan(null);
     setIsRegisterOpen(true);
   };
 
@@ -92,39 +95,150 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.page}>
+    <div>
       <Navbar onOpenRegister={handleOpenRegister} />
 
-      <main className={styles.main}>
-        {/* HERO SECTION */}
+      <main style={{ minHeight: "100vh" }}>
+        {/* 1. HERO */}
         <HeroSection onOpenRegister={handleOpenRegister} />
 
-        {/* FEATURES SECTION */}
-        <FeaturesSection />
+        {/* 2. FAIXA DE PROVA SOCIAL */}
+        <section className="social-proof">
+          <div className="container social-proof-content">
+            <div className="social-proof-stars">
+              <span className="stars-gold">★★★★★</span>
+              <span>Avaliação de Excelência em Gestão</span>
+            </div>
+            
+            <div className="social-proof-badges">
+              {/* Google Play */}
+              <div className="store-badge" style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 16px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <span style={{ fontSize: "20px" }}>🤖</span>
+                <div style={{ textAlign: "left", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontSize: "8px", textTransform: "uppercase" }}>Disponível no</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold" }}>Google Play</span>
+                </div>
+              </div>
+              
+              {/* App Store */}
+              <div className="store-badge" style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 16px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <span style={{ fontSize: "20px" }}>🍎</span>
+                <div style={{ textAlign: "left", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontSize: "8px", textTransform: "uppercase" }}>Disponível na</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold" }}>App Store</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        {/* PRICING SECTION */}
-        <PricingSection onSelectPlan={handleSelectPlan} />
-
-        {/* TESTIMONIALS SECTION */}
-        <section id="testimonials" className={`${styles.testimonials} section-padding`}>
+               {/* APLICATIVOS MÓVEIS */}
+        <section id="apps" className="apps-section section-padding">
           <div className="container">
-            <div className={styles.secHeader}>
-              <h2 className={styles.secTitle}>Aprovado por milhares de profissionais</h2>
-              <p className={styles.secSubtitle}>Veja o que dizem os estabelecimentos que já usam o Beautyfi diariamente</p>
+            <div className="sec-header">
+              <h2 className="sec-title">Um único aplicativo para todo o seu negócio</h2>
+              <p className="sec-subtitle">Sem múltiplos downloads. O beautyfi integra a jornada da cliente e o controle do profissional em um único aplicativo com alternância rápida de perfil.</p>
             </div>
 
-            <div className={styles.testimonialGrid}>
-              {testimonials.map((t, idx) => (
-                <div key={idx} className={styles.tCard}>
-                  <div>
-                    <div className={styles.tStars}>★★★★★</div>
-                    <p className={styles.tText}>"{t.text}"</p>
+            <div className="apps-grid">
+              {/* Perfil Cliente */}
+              <div className="app-card">
+                <div className="app-card-title">
+                  <span>📱</span> Perfil Cliente
+                  <span className="app-card-badge">Cliente agenda sozinho</span>
+                </div>
+                <p className="app-card-desc">
+                  Sua cliente faz o download do app e agenda de forma autônoma em segundos! Ela pode visualizar seus profissionais favoritos, buscar horários disponíveis, confirmar presença e pagar de forma segura.
+                </p>
+                <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
+                  <div style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <span style={{ fontSize: "16px" }}>🤖</span>
+                    <span style={{ fontSize: "11px", fontWeight: "bold" }}>Google Play</span>
                   </div>
-                  <div className={styles.tUser}>
-                    <div className={styles.tAvatar}>{t.avatarInitials}</div>
-                    <div className={styles.tUserInfo}>
-                      <span className={styles.tUserName}>{t.name}</span>
-                      <span className={styles.tUserRole}>{t.role}</span>
+                  <div style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <span style={{ fontSize: "16px" }}>🍎</span>
+                    <span style={{ fontSize: "11px", fontWeight: "bold" }}>App Store</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Perfil Profissional */}
+              <div className="app-card">
+                <div className="app-card-title">
+                  <span>💼</span> Perfil Profissional
+                  <span className="app-card-badge">Sua agenda & WhatsApp IA</span>
+                </div>
+                <p className="app-card-desc">
+                  Gerencie todo o seu estabelecimento no mesmo app. Controle de horários na palma da mão, cálculo automático de comissões da sua equipe e ativação do assistente virtual por WhatsApp.
+                </p>
+                <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
+                  <div style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <span style={{ fontSize: "16px" }}>🤖</span>
+                    <span style={{ fontSize: "11px", fontWeight: "bold" }}>Google Play</span>
+                  </div>
+                  <div style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <span style={{ fontSize: "16px" }}>🍎</span>
+                    <span style={{ fontSize: "11px", fontWeight: "bold" }}>App Store</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. COMO FUNCIONA */}
+        <section id="how-it-works" className="how-it-works section-padding">
+          <div className="container">
+            <div className="sec-header">
+              <h2 className="sec-title">Como funciona o beautyfi</h2>
+              <p className="sec-subtitle">Você ativa em minutos e vê o resultado no primeiro dia.</p>
+            </div>
+
+            <div className="steps-container">
+              {/* Passo 1 */}
+              <div className="step-item">
+                <span className="step-number">01</span>
+                <h3 className="step-title">Conecte seu WhatsApp</h3>
+                <p className="step-desc">Acesse o painel e vincule seu WhatsApp com leitura de QR Code rápida em 1 clique.</p>
+              </div>
+
+              {/* Passo 2 */}
+              <div className="step-item">
+                <span className="step-number">02</span>
+                <h3 className="step-title">A IA atende e agenda</h3>
+                <p className="step-desc">Seus clientes mandam mensagem e a IA responde de forma educada, agenda e envia o Pix de sinal.</p>
+              </div>
+
+              {/* Passo 3 */}
+              <div className="step-item">
+                <span className="step-number">03</span>
+                <h3 className="step-title">Acompanhe na tela</h3>
+                <p className="step-desc">Tudo cai direto na sua agenda em tempo real no seu celular. Você só foca no atendimento.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. DEPOIMENTOS */}
+        <section id="testimonials" className="testimonials section-padding">
+          <div className="container">
+            <div className="sec-header">
+              <h2 className="sec-title">Quem usa, ama e recomenda</h2>
+              <p className="sec-subtitle">Histórias reais de donas de negócio de beleza que transformaram sua gestão.</p>
+            </div>
+
+            <div className="testimonials-grid">
+              {testimonials.map((t, idx) => (
+                <div key={idx} className="testimonial-card">
+                  <div>
+                    <div className="testimonial-stars">★★★★★</div>
+                    <p className="testimonial-text">"{t.text}"</p>
+                  </div>
+                  <div className="testimonial-user">
+                    <div className="testimonial-avatar">{t.avatarInitials}</div>
+                    <div className="testimonial-info">
+                      <span className="testimonial-name">{t.name}</span>
+                      <span className="testimonial-role">{t.role}</span>
                     </div>
                   </div>
                 </div>
@@ -133,79 +247,114 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ SECTION */}
-        <section id="faq" className={`${styles.faq} section-padding`}>
+        {/* 6. PREÇOS */}
+        <PricingSection onSelectPlan={handleSelectPlan} />
+
+        {/* 7. FAQ */}
+        <section id="faq" className="faq section-padding">
           <div className="container">
-            <div className={styles.secHeader}>
-              <h2 className={styles.secTitle}>Perguntas Frequentes</h2>
-              <p className={styles.secSubtitle}>Tire suas principais dúvidas sobre o funcionamento do Beautyfi</p>
+            <div className="sec-header">
+              <h2 className="sec-title">Perguntas frequentes</h2>
+              <p className="sec-subtitle">Tire suas principais dúvidas sobre o funcionamento do beautyfi.</p>
             </div>
 
-            <div className={styles.faqContainer}>
-              <div className={styles.faqList}>
-                {faqs.map((faq, idx) => (
-                  <div key={idx} className={styles.faqItem}>
-                    <button onClick={() => toggleFaq(idx)} className={styles.faqHeader}>
-                      <span className={styles.faqQuestion}>{faq.question}</span>
-                      <span className={`${styles.faqIcon} ${activeFaq === idx ? styles.faqIconActive : ""}`}>+</span>
-                    </button>
-                    {activeFaq === idx && (
-                      <div className={styles.faqAnswer}>
-                        <p>{faq.answer}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
+            <div className="faq-list">
+              {faqs.map((faq, idx) => (
+                <div key={idx} className="faq-item">
+                  <button onClick={() => toggleFaq(idx)} className="faq-header">
+                    <span>{faq.question}</span>
+                    <span className={`faq-icon ${activeFaq === idx ? "faq-icon-active" : ""}`}>+</span>
+                  </button>
+                  {activeFaq === idx && (
+                    <div className="faq-answer">
+                      <p>{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 8. CTA FINAL */}
+        <section className="cta-final">
+          <div className="container">
+            <h2>Pronta para encher sua agenda?</h2>
+            <p>Comece seu teste de 14 dias grátis hoje e economize tempo.</p>
+            
+            <button onClick={handleOpenRegister} className="btn-gold" style={{ padding: "16px 40px", fontSize: "16px" }}>
+              Começar grátis agora
+            </button>
+
+            <div className="cta-final-badges">
+              {/* Google Play */}
+              <div style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 16px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>
+                <span style={{ fontSize: "20px" }}>🤖</span>
+                <div style={{ textAlign: "left", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontSize: "8px", textTransform: "uppercase" }}>Disponível no</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold" }}>Google Play</span>
+                </div>
+              </div>
+              
+              {/* App Store */}
+              <div style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 16px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>
+                <span style={{ fontSize: "20px" }}>🍎</span>
+                <div style={{ textAlign: "left", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontSize: "8px", textTransform: "uppercase" }}>Disponível na</span>
+                  <span style={{ fontSize: "12px", fontWeight: "bold" }}>App Store</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className={styles.footer}>
-        <div className={`${styles.footerGrid} container`}>
-          <div className={styles.fLogoSection}>
-            <span className={styles.fLogo}>
-              <img src="/logo.png" alt="Beautyfi Logo" style={{ height: "32px", width: "auto", marginRight: "8px", objectFit: "contain" }} />
-              <span className={styles.fLogoTextBeauty}>beauty</span>
-              <span className={styles.fLogoTextFi}>fi</span>
+      {/* 9. RODAPÉ */}
+      <footer className="footer">
+        <div className="container footer-grid">
+          <div className="footer-col">
+            <span className="logo" style={{ fontSize: "24px", display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
+              <img src="/logo.png" alt="beautyfi Logo" style={{ height: "30px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)", borderRadius: "8px" }} />
+              <div style={{ display: "flex", alignItems: "baseline", fontWeight: "700" }}>
+                <span className="logo-beauty" style={{ color: "#fff" }}>beauty</span>
+                <span className="logo-fi" style={{ color: "var(--accent)" }}>fi</span>
+              </div>
             </span>
-            <p className={styles.fDesc}>
-              A evolução da gestão de beleza. Agendamento simplificado, inteligência artificial integrada e controle financeiro robusto para o seu negócio.
+            <p className="footer-desc">
+              O software de agendamento e automação por IA que gerencia sua agenda, fideliza clientes e cuida do seu financeiro.
             </p>
           </div>
-          
-          <div className={styles.fCol}>
-            <h4 className={styles.fColTitle}>Produto</h4>
-            <ul className={styles.fLinks}>
-              <li><a href="#features" className={styles.fLink}>Funcionalidades</a></li>
-              <li><a href="#pricing" className={styles.fLink}>Planos e Preços</a></li>
-              <li><a href="#" className={styles.fLink}>Integração WhatsApp</a></li>
-            </ul>
-          </div>
-          
-          <div className={styles.fCol}>
-            <h4 className={styles.fColTitle}>Suporte</h4>
-            <ul className={styles.fLinks}>
-              <li><a href="#" className={styles.fLink}>Central de Ajuda</a></li>
-              <li><a href="#" className={styles.fLink}>Termos de Uso</a></li>
-              <li><a href="#" className={styles.fLink}>Privacidade</a></li>
+
+          <div className="footer-col">
+            <h4 className="footer-col-title">Recursos</h4>
+            <ul className="footer-links">
+              <li><a href="#features" className="footer-link">IA no WhatsApp</a></li>
+              <li><a href="#features" className="footer-link">Lembretes & Pix</a></li>
+              <li><a href="#features" className="footer-link">Agenda Online</a></li>
             </ul>
           </div>
 
-          <div className={styles.fCol}>
-            <h4 className={styles.fColTitle}>Contato</h4>
-            <ul className={styles.fLinks}>
-              <li><span className={styles.fLink}>contato@beautyfi.com.br</span></li>
-              <li><span className={styles.fLink}>Suporte no WhatsApp</span></li>
+          <div className="footer-col">
+            <h4 className="footer-col-title">Segurança</h4>
+            <ul className="footer-links">
+              <li><span className="footer-link">100% em Conformidade com LGPD</span></li>
+              <li><span className="footer-link">Pagamentos seguros por Stripe</span></li>
+              <li><span className="footer-link">Termos de Serviço</span></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h4 className="footer-col-title">Suporte</h4>
+            <ul className="footer-links">
+              <li><span className="footer-link">contato@beautyfi.com.br</span></li>
+              <li><span className="footer-link">Suporte no WhatsApp</span></li>
             </ul>
           </div>
         </div>
 
-        <div className={`${styles.footerBottom} container`}>
-          <p>&copy; {new Date().getFullYear()} beautyfi Inc. Todos os direitos reservados.</p>
-          <p>Feito com amor para profissionais de beleza.</p>
+        <div className="container footer-bottom">
+          <p>&copy; {new Date().getFullYear()} beautyfi. Todos os direitos reservados. CNPJ: XX.XXX.XXX/0001-XX</p>
+          <p>Feito para empoderar profissionais de beleza do Brasil.</p>
         </div>
       </footer>
 

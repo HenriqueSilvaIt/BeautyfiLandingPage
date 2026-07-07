@@ -1,8 +1,7 @@
 "use client";
 
-import styles from "./FeaturesSection.module.css";
-
 interface Feature {
+  slug: string;
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -11,87 +10,115 @@ interface Feature {
 export default function FeaturesSection() {
   const features: Feature[] = [
     {
+      slug: "ia-whatsapp",
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A15B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+        </svg>
+      ),
+      title: "IA no WhatsApp",
+      description: "Nossa inteligência artificial atende, agenda novos horários e confirma agendamentos sozinha, rodando 24 horas por dia.",
+    },
+    {
+      slug: "lembretes-pix",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A15B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
+          <line x1="12" y1="4" x2="12" y2="20"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      ),
+      title: "Lembretes + PIX/Sinal",
+      description: "Envie cobranças de sinal antecipado e lembretes automáticos no WhatsApp. Reduza o no-show e as faltas em até 80%.",
+    },
+    {
+      slug: "agenda-online",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A15B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
           <line x1="16" y1="2" x2="16" y2="6"/>
           <line x1="8" y1="2" x2="8" y2="6"/>
           <line x1="3" y1="10" x2="21" y2="10"/>
         </svg>
       ),
-      title: "Agendamento Online 24/7",
-      description: "Seu cliente agenda em segundos por um link personalizado. Reduza o tempo gasto no telefone e as mensagens repetitivas.",
+      title: "Agenda Online 24/7",
+      description: "Um link de agendamento personalizado e elegante. Suas clientes agendam serviços sozinhas em segundos pelo Instagram.",
     },
     {
+      slug: "historico-fichas",
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A15B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
         </svg>
       ),
-      title: "Histórico de Clientes",
-      description: "Tenha todas as informações, preferências de serviço, histórico de compras e fotos do antes e depois em um só lugar.",
+      title: "Histórico e Fichas",
+      description: "Fichas completas com preferências das clientes, anotações de fórmulas, avisos e fotos de antes e depois organizadas.",
     },
     {
+      slug: "comissoes-financeiro",
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-      ),
-      title: "Lembretes Automáticos",
-      description: "Disparos automáticos por WhatsApp reduzem as faltas (no-show) em até 80%. Mais compromisso, mais faturamento.",
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12A10 10 0 0 1 12 2z"/>
-          <path d="M12 8v4l3 3"/>
-        </svg>
-      ),
-      title: "Inteligência Artificial no WhatsApp",
-      description: "Deixe nossa IA conversar e agendar serviços diretamente no WhatsApp dos seus clientes de forma natural e rápida.",
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A15B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="1" x2="12" y2="23"/>
           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
         </svg>
       ),
       title: "Comissões & Financeiro",
-      description: "Chega de planilhas. Cálculo de comissão automatizado por profissional, relatórios de fluxo de caixa e controle de estoque.",
+      description: "Cálculo automático de comissões por profissional, fluxo de caixa detalhado e relatórios gerenciais/DRE sem planilhas.",
     },
     {
+      slug: "fidelidade-assinaturas",
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A15B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       ),
-      title: "Planos de Assinatura",
-      description: "Crie planos de recorrência mensais para seus clientes (ex: barba ilimitada). Garanta receita previsível para seu negócio.",
+      title: "Fidelidade & Assinaturas",
+      description: "Planos recorrentes (ex: barba mensal) e programa de pontos por fidelidade para garantir receita previsível todo mês.",
     },
   ];
 
   return (
-    <section id="features" className={`${styles.featuresSection} section-padding`}>
+    <section id="features" className="features-section section-padding">
       <div className="container">
-        <div className={styles.header}>
-          <p className={styles.tagline}>Recursos Exclusivos</p>
-          <h2 className={styles.title}>Tudo o que você precisa para crescer o seu negócio</h2>
-          <p className={styles.subtitle}>
-            Unimos agendamento simples a ferramentas avançadas de inteligência artificial e controle de caixa para colocar seu salão ou barbearia no piloto automático.
+        <div className="sec-header">
+          <h2 className="sec-title">Tudo o que seu negócio de beleza precisa</h2>
+          <p className="sec-subtitle">
+            Unimos agendamento, inteligência artificial integrada e controle financeiro robusto em uma plataforma elegante e acolhedora.
           </p>
         </div>
 
-        <div className={styles.grid}>
+        <div className="features-grid">
           {features.map((feature, idx) => (
-            <div key={idx} className={styles.card}>
-              <div className={styles.iconWrapper}>{feature.icon}</div>
-              <h3 className={styles.cardTitle}>{feature.title}</h3>
-              <p className={styles.cardDesc}>{feature.description}</p>
+            <div key={idx} className="feature-card">
+              <div>
+                <div className="feature-icon-wrapper" style={{ marginBottom: "20px" }}>{feature.icon}</div>
+                <h3 className="feature-card-title" style={{ marginBottom: "12px" }}>{feature.title}</h3>
+                <p className="feature-card-desc">{feature.description}</p>
+              </div>
+              
+              <a 
+                href={`/features/${feature.slug}`} 
+                style={{ 
+                  marginTop: "auto", 
+                  fontSize: "13px", 
+                  fontWeight: "600", 
+                  color: "var(--accent)", 
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "4px",
+                  paddingTop: "16px"
+                }}
+                className="feature-card-link"
+              >
+                Saiba mais →
+              </a>
             </div>
           ))}
         </div>
