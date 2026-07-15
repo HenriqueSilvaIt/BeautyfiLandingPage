@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -340,6 +341,7 @@ export default function Home() {
               <li><span className="footer-link">100% em Conformidade com LGPD</span></li>
               <li><span className="footer-link">Pagamentos seguros por Stripe</span></li>
               <li><span className="footer-link">Termos de Serviço</span></li>
+              <li><Link href="/politica-de-privacidade" className="footer-link">Política de Privacidade</Link></li>
             </ul>
           </div>
 
