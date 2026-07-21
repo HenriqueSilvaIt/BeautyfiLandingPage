@@ -11,35 +11,29 @@ interface PricingSectionProps {
 export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
 
-  const getPrice = (plan: "starter" | "solo-ia" | "pro" | "enterprise") => {
+  const getPrice = (plan: "starter" | "pro" | "enterprise") => {
     if (plan === "starter") {
       switch (cycle) {
-        case "monthly": return "59,90";
-        case "semiannual": return "53,90";
-        case "annual": return "49,90";
-      }
-    } else if (plan === "solo-ia") {
-      switch (cycle) {
-        case "monthly": return "74,90";
-        case "semiannual": return "67,40";
-        case "annual": return "62,40";
+        case "monthly": return "49,90";
+        case "semiannual": return "44,90";
+        case "annual": return "41,58";
       }
     } else if (plan === "pro") {
       switch (cycle) {
-        case "monthly": return "99,90";
-        case "semiannual": return "89,90";
-        case "annual": return "83,25";
+        case "monthly": return "89,90";
+        case "semiannual": return "80,90";
+        case "annual": return "74,90";
       }
     } else {
       switch (cycle) {
-        case "monthly": return "179,90";
-        case "semiannual": return "161,90";
-        case "annual": return "149,90";
+        case "monthly": return "159,90";
+        case "semiannual": return "143,90";
+        case "annual": return "133,25";
       }
     }
   };
 
-  const getBillingLabel = (plan: "starter" | "solo-ia" | "pro" | "enterprise") => {
+  const getBillingLabel = (plan: "starter" | "pro" | "enterprise") => {
     const price = getPrice(plan);
     switch (cycle) {
       case "monthly":
@@ -55,7 +49,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
     }
   };
 
-  const handleAction = (planName: string, planKey: "starter" | "solo-ia" | "pro" | "enterprise") => {
+  const handleAction = (planName: string, planKey: "starter" | "pro" | "enterprise") => {
     const price = getPrice(planKey);
     const cycleLabel = cycle === "monthly" ? "Mensal" : cycle === "semiannual" ? "Semestral" : "Anual";
     onSelectPlan(planName, cycleLabel, price);
@@ -83,7 +77,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
             className={`pricing-toggle-pill-btn ${cycle === "semiannual" ? "active" : ""}`}
           >
             Semestral
-            <span className="pill-discount-badge">10% off</span>
+            <span className="pill-discount-badge">Economize 10%</span>
           </button>
           
           <button 
@@ -91,7 +85,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
             className={`pricing-toggle-pill-btn ${cycle === "annual" ? "active" : ""}`}
           >
             Anual
-            <span className="pill-discount-badge">17% de desconto</span>
+            <span className="pill-discount-badge">2 meses grátis</span>
           </button>
         </div>
 
@@ -117,22 +111,37 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
                   <span style={{ color: "var(--accent)" }}>✓</span> 1 profissional ativo
                 </li>
                 <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> App mobile (cliente + profissional)
+                </li>
+                <li className="pricing-feature-item">
                   <span style={{ color: "var(--accent)" }}>✓</span> Agendamento online 24/7
                 </li>
                 <li className="pricing-feature-item">
                   <span style={{ color: "var(--accent)" }}>✓</span> Histórico e fichas de clientes
                 </li>
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Lembretes WhatsApp (até 100/mês)
+                  <span style={{ color: "var(--accent)" }}>✓</span> Ficha de anamnese
                 </li>
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Planos de assinatura para clientes
+                  <span style={{ color: "var(--accent)" }}>✓</span> Controle de comandas e caixa
+                </li>
+                <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> Recebimento de sinal por Pix
+                </li>
+                <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> Clube de assinaturas para clientes
+                </li>
+                <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> Lembretes por WhatsApp (até 100/mês)
+                </li>
+                <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> Relatórios essenciais
                 </li>
                 <li className="pricing-feature-item" style={{ opacity: 0.5 }}>
-                  <span style={{ color: "red" }}>✗</span> IA no WhatsApp
+                  <span style={{ color: "#9ca3af" }}>✗</span> Cálculo automático de comissão
                 </li>
                 <li className="pricing-feature-item" style={{ opacity: 0.5 }}>
-                  <span style={{ color: "red" }}>✗</span> Cálculo automático de comissão
+                  <span style={{ color: "#9ca3af" }}>✗</span> Programa de fidelidade
                 </li>
               </ul>
             </div>
@@ -143,49 +152,6 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               style={{ width: "100%", marginTop: "20px" }}
             >
               Assinar Starter
-            </button>
-          </div>
-
-          {/* SOLO + IA */}
-          <div className="pricing-card">
-            <div>
-              <h3 className="pricing-plan-name">Solo + IA</h3>
-              <p style={{ fontSize: "13px", color: "var(--text-secondary)", marginBottom: "16px" }}>Solo com inteligência artificial</p>
-              
-              <div className="pricing-plan-price">
-                <span className="price-currency">R$</span>
-                <span className="price-number">{getPrice("solo-ia")}</span>
-                <span className="price-period">/mês</span>
-              </div>
-              <p className="pricing-value-sentence" style={{ fontStyle: "normal", color: "var(--text-secondary)", marginBottom: "30px", fontSize: "12px" }}>
-                {getBillingLabel("solo-ia")}
-              </p>
-
-              <ul className="pricing-features-list">
-                <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> 1 profissional ativo
-                </li>
-                <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Tudo do Starter
-                </li>
-                <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)", fontWeight: "bold" }}>✓ IA no WhatsApp (atende & agenda)</span>
-                </li>
-                <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Lembretes & notificações ilimitados
-                </li>
-                <li className="pricing-feature-item" style={{ opacity: 0.5 }}>
-                  <span style={{ color: "red" }}>✗</span> Cálculo automático de comissão
-                </li>
-              </ul>
-            </div>
-
-            <button 
-              onClick={() => handleAction("Solo + IA", "solo-ia")} 
-              className="btn-secondary"
-              style={{ width: "100%", marginTop: "20px" }}
-            >
-              Assinar Solo + IA
             </button>
           </div>
 
@@ -207,25 +173,28 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
 
               <ul className="pricing-features-list">
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Tudo do Starter
-                </li>
-                <li className="pricing-feature-item">
                   <span style={{ color: "var(--accent)" }}>✓</span> Até 5 profissionais ativos
                 </li>
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)", fontWeight: "bold" }}>✓ IA no WhatsApp (atende & agenda)</span>
+                  <span style={{ color: "var(--accent)" }}>✓</span> Tudo do Starter
                 </li>
                 <li className="pricing-feature-item">
                   <span style={{ color: "var(--accent)" }}>✓</span> Cálculo automático de comissões
                 </li>
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Visão financeira completa & DRE
-                </li>
-                <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Lembretes & notificações ilimitados
+                  <span style={{ color: "var(--accent)" }}>✓</span> Visão financeira completa e DRE
                 </li>
                 <li className="pricing-feature-item">
                   <span style={{ color: "var(--accent)" }}>✓</span> Programa de pontos de fidelidade
+                </li>
+                <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> Lembretes e notificações ilimitados (uso justo)
+                </li>
+                <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> Mensagens automáticas de reativação e aniversário
+                </li>
+                <li className="pricing-feature-item">
+                  <span style={{ color: "var(--accent)" }}>✓</span> Relatórios completos
                 </li>
               </ul>
             </div>
@@ -256,16 +225,13 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
 
               <ul className="pricing-features-list">
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Tudo do Pro
-                </li>
-                <li className="pricing-feature-item">
                   <span style={{ color: "var(--accent)" }}>✓</span> Profissionais ilimitados
                 </li>
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> Gestão multi-unidades
+                  <span style={{ color: "var(--accent)" }}>✓</span> Tudo do Pro
                 </li>
                 <li className="pricing-feature-item">
-                  <span style={{ color: "var(--accent)" }}>✓</span> IA avançada com transbordo humano
+                  <span style={{ color: "var(--accent)" }}>✓</span> Gestão multi-unidades
                 </li>
                 <li className="pricing-feature-item">
                   <span style={{ color: "var(--accent)" }}>✓</span> Relatórios e inteligência de dados customizados
@@ -281,7 +247,7 @@ export default function PricingSection({ onSelectPlan }: PricingSectionProps) {
               className="btn-secondary"
               style={{ width: "100%", marginTop: "20px" }}
             >
-              Falar com Vendas
+              Falar com especialista
             </button>
           </div>
         </div>

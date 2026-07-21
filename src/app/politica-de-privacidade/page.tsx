@@ -72,7 +72,13 @@ export default function PrivacyPolicyPage() {
 
       {/* CONTENT & INDEX */}
       <section style={{ padding: "60px 0 100px 0" }}>
-        <div className="container" style={{ display: "flex", gap: "60px", maxWidth: "1200px" }}>
+        <div className="container privacy-layout">
+          <style dangerouslySetInnerHTML={{__html: `
+            .privacy-layout { display: flex; gap: 60px; max-width: 1200px; }
+            @media (max-width: 768px) {
+              .privacy-layout { flex-direction: column; gap: 32px; }
+            }
+          `}} />
           {/* Table of Contents (Sticky sidebar) */}
           <aside style={{ width: "280px", flexShrink: 0, position: "sticky", top: "130px", height: "fit-content", display: "flex", flexDirection: "column", gap: "12px" }} className="hide-on-mobile">
             <h4 style={{ fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--accent)", marginBottom: "16px" }}>
@@ -169,6 +175,7 @@ export default function PrivacyPolicyPage() {
                 <p>As assinaturas e cobranças podem ser gerenciadas por plataformas terceiras seguras, como Stripe ou similares.</p>
                 <p>O aplicativo não armazena dados completos de cartão de crédito.</p>
                 <p>Os valores, condições e periodicidade das cobranças serão informados previamente ao contratante.</p>
+                <p><strong>Nota importante sobre assinaturas criadas por profissionais:</strong> Nós fornecemos apenas a infraestrutura tecnológica (a plataforma). A responsabilidade pela prestação do serviço vinculado à assinatura e o recebimento dos valores é integral e exclusiva da empresa (estabelecimento) que fornece e oferta o plano ao cliente final.</p>
               </div>
 
               <div id="whatsapp" style={sectionStyle}>
@@ -316,14 +323,14 @@ export default function PrivacyPolicyPage() {
               </div>
             </span>
             <p className="footer-desc" style={{ color: "rgba(255, 255, 255, 0.6)" }}>
-              O software de agendamento e automação por IA que gerencia sua agenda, fideliza clientes e cuida do seu financeiro.
+              O software de agendamento e gestão que organiza sua agenda, fideliza clientes e cuida do seu financeiro.
             </p>
           </div>
 
           <div className="footer-col">
             <h4 className="footer-col-title">Recursos</h4>
             <ul className="footer-links">
-              <li><Link href="/#features" className="footer-link">IA no WhatsApp</Link></li>
+              <li><Link href="/#features" className="footer-link">Notificações WhatsApp</Link></li>
               <li><Link href="/#features" className="footer-link">Lembretes & Pix</Link></li>
               <li><Link href="/#features" className="footer-link">Agenda Online</Link></li>
             </ul>

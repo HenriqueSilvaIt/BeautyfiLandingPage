@@ -32,7 +32,7 @@ export default function Home() {
       name: "Bruna Albuquerque",
       role: "Lash & Nail Designer (Autônoma)",
       avatarInitials: "BA",
-      text: "A IA no WhatsApp mudou minha vida! Ela atende minhas clientes e fecha os horários enquanto estou atendendo ou até dormindo. Reduzi faltas cobrando o sinal via Pix e minha agenda encheu.",
+      text: "O sistema mudou minha vida! O aplicativo fecha os horários enquanto estou atendendo ou até dormindo. Reduzi faltas cobrando o sinal via Pix e minha agenda encheu.",
     },
     {
       name: "Camila Rocha",
@@ -44,7 +44,7 @@ export default function Home() {
       name: "Renata Vasconcellos",
       role: "Esteticista e Lash Artist",
       avatarInitials: "RV",
-      text: "Antes eu perdia clientes porque demorava pra responder no WhatsApp. Agora com o link de agendamento online e a IA, elas marcam sozinhas de madrugada. Não troco por nada!",
+      text: "Antes eu perdia clientes porque demorava pra responder no WhatsApp. Agora com o link de agendamento online e o app, elas marcam sozinhas de madrugada. Não troco por nada!",
     },
   ];
 
@@ -58,8 +58,8 @@ export default function Home() {
       answer: "Não! Você pode criar sua conta e começar a testar gratuitamente por 7 dias sem precisar colocar dados de cartão de crédito.",
     },
     {
-      question: "Funciona no meu WhatsApp?",
-      answer: "Sim! A nossa inteligência artificial se conecta com o seu número de WhatsApp atual. Não é necessário comprar outro número ou chip.",
+      question: "As notificações vão para o meu WhatsApp?",
+      answer: "Sim! O sistema envia os lembretes automáticos usando nosso número oficial. Você não precisa comprar outro número ou chip.",
     },
     {
       question: "Serve para qual tipo de salão?",
@@ -167,10 +167,10 @@ export default function Home() {
               <div className="app-card">
                 <div className="app-card-title">
                   <span>💼</span> Perfil Profissional
-                  <span className="app-card-badge">Sua agenda & WhatsApp IA</span>
+                  <span className="app-card-badge">Sua agenda & Gestão</span>
                 </div>
                 <p className="app-card-desc">
-                  Gerencie todo o seu estabelecimento no mesmo app. Controle de horários na palma da mão, cálculo automático de comissões da sua equipe e ativação do assistente virtual por WhatsApp.
+                  Gerencie todo o seu estabelecimento no mesmo app. Controle de horários na palma da mão, cálculo automático de comissões da sua equipe e confirmações automáticas por WhatsApp.
                 </p>
                 <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
                   <div style={{ backgroundColor: "#000", color: "#fff", display: "flex", alignItems: "center", gap: "8px", padding: "6px 12px", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
@@ -206,8 +206,8 @@ export default function Home() {
               {/* Passo 2 */}
               <div className="step-item">
                 <span className="step-number">02</span>
-                <h3 className="step-title">A IA atende e agenda</h3>
-                <p className="step-desc">Seus clientes mandam mensagem e a IA responde de forma educada, agenda e envia o Pix de sinal.</p>
+                <h3 className="step-title">Lembretes automáticos</h3>
+                <p className="step-desc">O sistema envia lembretes para os seus clientes de forma educada, informando o horário e cobrando o Pix de sinal.</p>
               </div>
 
               {/* Passo 3 */}
@@ -322,14 +322,14 @@ export default function Home() {
               </div>
             </span>
             <p className="footer-desc">
-              O software de agendamento e automação por IA que gerencia sua agenda, fideliza clientes e cuida do seu financeiro.
+              O software de agendamento e gestão que organiza sua agenda, fideliza clientes e cuida do seu financeiro.
             </p>
           </div>
 
           <div className="footer-col">
             <h4 className="footer-col-title">Recursos</h4>
             <ul className="footer-links">
-              <li><a href="#features" className="footer-link">IA no WhatsApp</a></li>
+              <li><a href="#features" className="footer-link">Notificações WhatsApp</a></li>
               <li><a href="#features" className="footer-link">Lembretes & Pix</a></li>
               <li><a href="#features" className="footer-link">Agenda Online</a></li>
             </ul>

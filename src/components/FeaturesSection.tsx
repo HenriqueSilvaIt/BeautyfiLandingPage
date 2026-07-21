@@ -10,15 +10,15 @@ interface Feature {
 export default function FeaturesSection() {
   const features: Feature[] = [
     {
-      slug: "ia-whatsapp",
+      slug: "aplicativos-exclusivos",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C6A15B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+          <line x1="12" y1="18" x2="12.01" y2="18"/>
         </svg>
       ),
-      title: "IA no WhatsApp",
-      description: "Nossa inteligência artificial atende, agenda novos horários e confirma agendamentos sozinha, rodando 24 horas por dia.",
+      title: "Aplicativos Exclusivos",
+      description: "Um aplicativo completo para você gerenciar o salão e outro para suas clientes agendarem serviços de forma 100% autônoma.",
     },
     {
       slug: "lembretes-pix",
@@ -89,7 +89,7 @@ export default function FeaturesSection() {
         <div className="sec-header">
           <h2 className="sec-title">Tudo o que seu negócio de beleza precisa</h2>
           <p className="sec-subtitle">
-            Unimos agendamento, inteligência artificial integrada e controle financeiro robusto em uma plataforma elegante e acolhedora.
+            Unimos agendamento, gestão inteligente e controle financeiro robusto em uma plataforma elegante e acolhedora.
           </p>
         </div>
 

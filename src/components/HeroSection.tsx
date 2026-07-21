@@ -101,34 +101,7 @@ export default function HeroSection({ onOpenRegister }: HeroSectionProps) {
             />
           </div>
 
-          {/* Floating WhatsApp IA bubble */}
-          <div 
-            className="floating-wa-bubble"
-            style={{
-              position: "absolute",
-              bottom: "40px",
-              left: "-15px",
-              backgroundColor: "#ffffff",
-              border: "1px solid rgba(198, 161, 91, 0.25)",
-              borderRadius: "20px",
-              boxShadow: "0 12px 30px -8px rgba(0,0,0,0.18)",
-              padding: "14px 18px",
-              maxWidth: "250px",
-              zIndex: 3,
-              display: "flex",
-              flexDirection: "column",
-              gap: "4px",
-              textAlign: "left"
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <span style={{ color: "#25D366", fontSize: "16px", fontWeight: "bold" }}>●</span>
-              <span style={{ fontSize: "11px", fontWeight: "800", color: "#10b981", textTransform: "uppercase", letterSpacing: "0.05em" }}>WhatsApp IA Ativa</span>
-            </div>
-            <p style={{ fontSize: "11px", color: "#16294E", margin: 0, fontWeight: "600", lineHeight: "1.4" }}>
-              "Agendamento confirmado! Corte de Cabelo hoje às 14:00 com Camila."
-            </p>
-          </div>
+
         </div>
       </div>
     </section>
